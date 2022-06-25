@@ -1,0 +1,15 @@
+# Personal mods for bash terminal
+
+- name: add ll alias to /etc/profile.d/ll.sh
+  ansible.builtin.copy:
+    content: alias ll='ls -alF --color=auto'
+    dest: /etc/profile.d/ll.sh
+
+- name: add custom PS1 prompt for bash for users
+  ansible.builtin.lineinfile:
+    path: ~{{item}}/.bashrc
+    line: export PS1="\t \[$(tput sgr0)\]\[\033[38;5;13m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[\033[38;5;10m\]\h\[$(tput sgr0)\][\[$(tput sgr0)\]\[\033[38;5;14m\]\w\[$(tput sgr0)\]]\[$(tput sgr0)\]\[\033[38;5;7m\]:\[$(tput sgr0)\] \[$(tput sgr0)\]"
+    insertafter: EOF
+  with_items:
+    - root
+    - commander
