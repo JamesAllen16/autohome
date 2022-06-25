@@ -1,3 +1,5 @@
+# Disable Pi swapfile to help with SD card health
+
 - name: Disable swap via swapoff command
   ansible.builtin.command: swapoff --all
 
