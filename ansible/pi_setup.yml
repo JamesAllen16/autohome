@@ -1,3 +1,4 @@
 - hosts: pis
   roles:
     - no-swap
+    - git
