@@ -1,4 +1,5 @@
 - hosts: pis
   roles:
     - no-swap
+    - disable-bluetooth
     - git
