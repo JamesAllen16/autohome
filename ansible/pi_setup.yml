@@ -1,6 +1,7 @@
 - hosts: pis
   roles:
     - no-swap
+    - wifi-country
     - disable-bluetooth
     - git
     - bash-mods

@@ -1,0 +1,4 @@
+# Sets the Pi Wi-Fi Country to disable the login warning message
+
+- name: Set Wi-Fi Country to United Kingdom (GB)
+  ansible.builtin.command: raspi-config nonint set_wifi_country GB
