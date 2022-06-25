@@ -2,3 +2,6 @@
   ansible.builtin.apt:
     name: git
     state: present
+
+- name: Set git default branch name to 'main'
+  ansible.builtin.command: git config --global init.defaultBranch main
