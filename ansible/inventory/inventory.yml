@@ -1,6 +1,6 @@
 pis:
   hosts:
-    quake.local:
-    doom.local:
+    quake:
+    doom:
   vars:
     ansible_become: true
