@@ -5,6 +5,7 @@
     - disable-bluetooth
     - git
     - bash-mods
+    - docker
     - role: hashicorp
       binaries:
         - nomad

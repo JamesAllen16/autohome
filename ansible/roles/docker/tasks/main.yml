@@ -1,0 +1,35 @@
+- name: Determine service facts
+  ansible.builtin.service_facts:
+
+- name: Install Docker
+  block:
+  - name: Obtain Docker install script
+    ansible.builtin.get_url:
+      url: https://get.docker.com
+      dest: &tmp_script /tmp/docker_install.sh
+      mode: 0755
+
+  - name: Run Docker install script
+    ansible.builtin.command: *tmp_script
+
+  - name: Allow commander user to execute docker commands
+    command: usermod -aG docker commander
+  when: "'docker' not in services"
+
+- name: Ensure docker service is running and enabled
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Install docker-compose
+  block:
+  - name: Ensure python3-pip is installed
+    ansible.builtin.apt:
+      name: python3-pip
+      state: present
+
+  - name: Install docker-compose via pip
+    ansible.builtin.pip:
+      name: docker-compose
+      state: present
