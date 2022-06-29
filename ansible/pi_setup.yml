@@ -5,3 +5,7 @@
     - disable-bluetooth
     - git
     - bash-mods
+    - role: hashicorp
+      binaries:
+        - nomad
+        - consul

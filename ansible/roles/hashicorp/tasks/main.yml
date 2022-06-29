@@ -1,0 +1,14 @@
+- name: Add Hashicorp GPG key
+  ansible.builtin.apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+
+- name: Ensure Hashicorp APT repository is present
+  ansible.builtin.apt_repository:
+    repo: deb [arch=armhf] https://apt.releases.hashicorp.com {{ansible_distribution_release}} main
+    state: present
+
+- name: Install latest Hashicorp binaries
+  ansible.builtin.apt:
+    name: "{{item}}"
+    state: latest
+  loop: "{{binaries}}"
