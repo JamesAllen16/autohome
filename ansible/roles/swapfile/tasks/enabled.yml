@@ -1,0 +1,18 @@
+# Enable Pi swapfile, usually for large tasks such as compiling that may need >1GB RAM
+
+- name: Install dphys-swapfile package
+  ansible.builtin.apt:
+    name: dphys-swapfile
+    state: present
+
+- name: Modify CONF_SWAPSIZE to {{swap_size}}MB
+  ansible.builtin.lineinfile:
+    path: /etc/dphys-swapfile
+    regex: '^CONF_SWAPSIZE=\d*$'
+    line: CONF_SWAPSIZE={{swap_size}}
+
+- name: Restart and enable dphys-swapfile service
+  ansible.builtin.service:
+    name: dphys-swapfile
+    state: restarted
+    enabled: yes

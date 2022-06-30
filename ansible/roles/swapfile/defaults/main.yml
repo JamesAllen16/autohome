@@ -1,0 +1,2 @@
+enabled: yes    # Toggle enabling/disabling swapfile
+swap_size: 2048 # Swapfile size in MB

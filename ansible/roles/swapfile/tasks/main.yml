@@ -1,0 +1,3 @@
+
+- name: Run appropriate tasks
+  ansible.builtin.include_tasks: "{{'enabled' if enabled else 'disabled'}}.yml"

@@ -1,6 +1,5 @@
 - hosts: pis
   roles:
-    - no-swap
     - wifi-country
     - disable-bluetooth
     - git
@@ -10,3 +9,5 @@
       binaries:
         - nomad
         - consul
+    - role: swapfile
+      enabled: no
