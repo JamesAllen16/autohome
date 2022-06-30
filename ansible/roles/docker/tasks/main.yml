@@ -12,6 +12,11 @@
   - name: Run Docker install script
     ansible.builtin.command: *tmp_script
 
+  - name: Delete Docker install script
+    ansible.builtin.file:
+      path: *tmp_script
+      state: absent
+
   - name: Allow commander user to execute docker commands
     command: usermod -aG docker commander
   when: "'docker' not in services"
