@@ -1,7 +1,13 @@
 # Disable Pi swapfile to help with SD card health
 
+- name: Check for active swap devices
+  ansible.builtin.command: swapon -s
+  register: swapon
+  changed_when: false
+
 - name: Disable swap via swapoff command
   ansible.builtin.command: swapoff --all
+  when: swapon.stdout != ''
 
 - name: Remove dphys-swapfile package
   ansible.builtin.apt:

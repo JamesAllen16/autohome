@@ -3,5 +3,11 @@
     name: git
     state: present
 
+- name: Determine default branch name
+  ansible.builtin.command: git config --global --get init.defaultBranch
+  register: default_branch
+  changed_when: false
+
 - name: Set git default branch name to 'main'
   ansible.builtin.command: git config --global init.defaultBranch main
+  when: default_branch.stdout != 'main'
