@@ -2,6 +2,7 @@
   ansible.builtin.service:
     name: "{{item}}"
     state: stopped
+    enabled: no
   with_items:
     - bluetooth
     - hciuart
